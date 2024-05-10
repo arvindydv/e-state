@@ -1,6 +1,6 @@
 # E-State
 
-E-state is a web application built with MERN stack (MongoDB, Express.js, React.js, Node.js). that aims to provide features where user can create, update, delete our land (home, rooms) listing for rent or sell. and also user can see all land (home, rooms) and contact to the landlord. and it allows user to search, filter for nearby home, rooms.
+E-state is a web application built with MERN stack (MongoDB, Express.js, React.js, Node.js). that aims to provide features where user can create, update, delete our land (home, rooms) listing for rent or sale. and also user can see all land (home, rooms) and contact to the landlord. and it allows user to search, filter for nearby home, rooms.
 
 ## Features
 
@@ -28,7 +28,7 @@ To run the project locally, follow these steps:
 
 ## Usage
 
-- User can sell and purchase land (home rooms) using this web application.
+- User can sale and purchase land (home rooms) using this web application.
 - User can filter for nearby home rooms and contact to the landlord.
 
 ## Contributing
