@@ -1,4 +1,4 @@
-# Food App
+# E-State
 
 E-state is a web application built with MERN stack (MongoDB, Express.js, React.js, Node.js). that aims to provide features where user can create, update, delete our land (home, rooms) listing for rent or sell. and also user can see all land (home, rooms) and contact to the landlord. and it allows user to search, filter for nearby home, rooms.
 
@@ -20,8 +20,8 @@ E-state is a web application built with MERN stack (MongoDB, Express.js, React.j
 
 To run the project locally, follow these steps:
 
-1. Clone the repository: git clone https://github.com/arvindydv/swiggy
-2. Navigate to the project directory: cd swiggy
+1. Clone the repository: git clone https://github.com/arvindydv/e-state
+2. Navigate to the project directory: cd e-state 
 3. Install dependencies: npm install
 4. Start the development server: npm run dev
 5. Open your web browser and visit http://http://localhost:5173 to view the application.
