@@ -20,7 +20,7 @@ const CreateListing = () => {
     type: "rent",
     bedrooms: 1,
     bathrooms: 1,
-    regularPrice: 50,
+    regularPrice: 0,
     discountPrice: 0,
     offer: false,
     parking: false,
@@ -138,7 +138,7 @@ const CreateListing = () => {
           type: "rent",
           bedrooms: 1,
           bathrooms: 1,
-          regularPrice: 50,
+          regularPrice: 0,
           discountPrice: 0,
           offer: false,
           parking: false,
@@ -176,7 +176,7 @@ const CreateListing = () => {
             type="text"
             placeholder="Description"
             required
-            maxLength="62"
+            // maxLength="62"
             minLength="10"
             id="description"
             className="border p-3 rounded-lg"
@@ -203,7 +203,7 @@ const CreateListing = () => {
                 onChange={handleChange}
                 checked={formData.type === "sale"}
               />
-              <span>Sell </span>
+              <span>sale </span>
             </div>
             <div className="flex gap-2">
               <input
@@ -277,16 +277,15 @@ const CreateListing = () => {
               <input
                 type="number"
                 id="regularPrice"
-                min="1"
-                max="10"
+                min="0"
                 required
-                className="p-3 border border-gray-300 rounded-lg"
+                className="p-3 border border-gray-300 rounded-lg w-20"
                 onChange={handleChange}
                 value={formData.regularPrice}
               />
               <div className="flex flex-col items-center">
                 <p>Regular Price</p>
-                <span className="text-xs"> ($ / month)</span>
+                <span className="text-xs"> (Rs / month)</span>
               </div>
             </div>
             {formData.offer && (
@@ -294,16 +293,15 @@ const CreateListing = () => {
                 <input
                   type="number"
                   id="discountPrice"
-                  min="1"
-                  max="10"
+                  min="0"
                   required
-                  className="p-3 border border-gray-300 rounded-lg"
+                  className="p-3 border border-gray-300 rounded-lg w-20"
                   onChange={handleChange}
                   value={formData.discountPrice}
                 />
                 <div className="flex flex-col items-center">
                   <p>Discounted Price</p>
-                  <span className="text-xs"> ($ / month)</span>
+                  <span className="text-xs"> (Rs / month)</span>
                 </div>
               </div>
             )}

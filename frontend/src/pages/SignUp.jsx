@@ -3,12 +3,21 @@ import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  signInFailure,
+  signInStart,
+  signInSuccess,
+} from "../redux/user/userSlice";
+import OAuth from "../components/OAuth";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({});
-  const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  // const [loading, setLoading] = useState(false);
+  // const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { error, loading } = useSelector((state) => state.user);
 
   const handleOnChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -18,18 +27,16 @@ const SignUp = () => {
     e.preventDefault();
 
     try {
-      setLoading(true);
+      dispatch(signInStart());
       const res = await axios.post("/api/auth/register", formData);
       if (res.data.statusCode === 201) {
-        setErrorMessage("");
-        setLoading(false);
-        navigate("/sign-in");
+        dispatch(signInSuccess(res.data.data.user));
+        navigate("/");
         console.log(res.data.data);
       }
       console.log(res.data);
     } catch (error) {
-      setLoading(false);
-      setErrorMessage(error.response.data.message);
+      dispatch(signInFailure(error.response.data.message));
       console.log(error);
     }
   };
@@ -82,6 +89,7 @@ const SignUp = () => {
         >
           {loading ? "Loading..." : "sign up"}
         </button>
+        <OAuth />
       </form>
       <div className="flex gap-2 mt-5">
         <p>Have an account</p>
@@ -89,7 +97,7 @@ const SignUp = () => {
           <span className="text-blue-700">Sign in</span>
         </Link>
       </div>
-      {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+      {error && <p className="text-red-500">{error}</p>}
     </div>
   );
 };

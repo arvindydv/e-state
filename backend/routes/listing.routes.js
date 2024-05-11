@@ -3,6 +3,7 @@ import {
   createListing,
   deleteListing,
   getListingById,
+  getListings,
   myListing,
   updateListing,
 } from "../controllers/listing.controller.js";
@@ -15,5 +16,6 @@ router.route("/listing").get(verifyJwt, myListing);
 router.route("/listing/:listingId").delete(verifyJwt, deleteListing);
 router.route("/listing/:listingId").get(getListingById);
 router.route("/listing/:listingId").patch(verifyJwt, updateListing);
+router.route("/listings").get(getListings);
 
 export default router;

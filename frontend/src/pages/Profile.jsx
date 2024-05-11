@@ -14,7 +14,7 @@ import {
   updateStart,
   updateSuccess,
   updateFailure,
-  deleteStart,
+  signOut,
   deleteSuccess,
   deleteFailure,
 } from "../redux/user/userSlice";
@@ -107,6 +107,19 @@ const Profile = () => {
       }
     } catch (error) {
       dispatch(deleteFailure(error.response.data.message));
+      console.log(error);
+    }
+  };
+
+  const signOutHandler = async () => {
+    try {
+      const res = await axios.post("/api/auth/sign-out");
+      console.log(res.data.statusCode);
+      if (res.data.statusCode === 200) {
+        dispatch(signOut());
+        useNavigate("/sign-in");
+      }
+    } catch (error) {
       console.log(error);
     }
   };
@@ -213,7 +226,12 @@ const Profile = () => {
         >
           delete Account
         </span>
-        <span className="text-red-700 uppercase cursor-pointer">Sign out</span>
+        <span
+          className="text-red-700 uppercase cursor-pointer"
+          onClick={signOutHandler}
+        >
+          Sign out
+        </span>
       </div>
     </div>
   );

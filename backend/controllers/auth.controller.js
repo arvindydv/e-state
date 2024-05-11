@@ -166,4 +166,62 @@ const signUpWithGoogle = asyncHandler(async (req, res) => {
     );
 });
 
-export { register, signIn, signUpWithGoogle };
+const loginWithGoogle = asyncHandler(async (req, res) => {
+  const email = req.body.email;
+
+  //   find user
+  const user = await User.findOne({ email: email });
+
+  if (!user) {
+    return res.status(404).json(new ApiResponse(404, {}, "user not found"));
+  }
+
+  const { accessToken } = await generateAccessAndRefereshTokens(user._id);
+  const loggedInUser = await User.findById(user._id).select(
+    "-password -refreshToken"
+  );
+
+  // set cookies
+  const options = {
+    httpOnly: true,
+    secure: true,
+  };
+
+  return res
+    .status(200)
+    .cookie("accessToken", accessToken, options)
+    .json(
+      new ApiResponse(
+        200,
+        {
+          user: loggedInUser,
+          accessToken: accessToken,
+        },
+        "user logged in successfully"
+      )
+    );
+});
+
+// user logout controller
+const logout = asyncHandler(async (req, res) => {
+  await User.findByIdAndUpdate(
+    req.user._id,
+    {
+      $set: { refreshToken: undefined },
+    },
+    { new: true }
+  );
+
+  const options = {
+    httpOnly: true,
+    secure: true,
+  };
+
+  return res
+    .status(200)
+    .clearCookie("accessToken", options)
+    .clearCookie("refreshToken", options)
+    .json(new ApiResponse(200, {}, "user logged out successfully"));
+});
+
+export { register, signIn, signUpWithGoogle, loginWithGoogle, logout };

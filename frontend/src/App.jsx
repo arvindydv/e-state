@@ -7,6 +7,7 @@ import { Home } from "./pages/Home";
 import Listing from "./pages/Listing";
 import MyListing from "./pages/MyListing";
 import Profile from "./pages/Profile";
+import Search from "./pages/Search";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 
@@ -24,6 +25,7 @@ function App() {
           <Route path="/my-listing" element={<MyListing />} />
         </Route>
 
+        <Route path="/search" element={<Search />} />
         <Route path="/listing/:listingId" element={<Listing />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />

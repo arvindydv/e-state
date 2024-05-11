@@ -10,6 +10,7 @@ import {
   signInStart,
   signInSuccess,
 } from "../redux/user/userSlice";
+import SignInWithGoogle from "../components/SignInWithGoogle";
 
 const SignIn = () => {
   const [formData, setFormData] = useState({});
@@ -65,9 +66,10 @@ const SignIn = () => {
           type="submit"
           className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:placeholder-opacity-80"
         >
-          {loading ? "Loading..." : "sign up"}
+          {loading ? "Loading..." : "sign In"}
         </button>
-        <OAuth />
+        {/* <OAuth /> */}
+        <SignInWithGoogle />
       </form>
       <div className="flex gap-2 mt-5">
         <p>Don't have an account</p>

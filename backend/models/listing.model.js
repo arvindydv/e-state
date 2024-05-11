@@ -23,11 +23,11 @@ const listingSchema = new Schema(
       required: true,
     },
     bathrooms: {
-      type: Boolean,
+      type: Number,
       required: true,
     },
     bedrooms: {
-      type: Boolean,
+      type: Number,
       required: true,
     },
     furnished: {

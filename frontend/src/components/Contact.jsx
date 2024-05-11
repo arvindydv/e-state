@@ -1,6 +1,7 @@
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Contact = ({ listing }) => {
   const [landlord, setLandlord] = useState(null);
@@ -13,7 +14,7 @@ const Contact = ({ listing }) => {
   const getUser = async () => {
     try {
       const res = await axios.get(`/api/users/profile/${listing.userId}`);
-      if (res.statusCode === 200) {
+      if (res.data.statusCode === 200) {
         console.log(res.data);
         setLandlord(res.data.data);
       }
